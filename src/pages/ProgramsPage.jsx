@@ -94,8 +94,11 @@ function ProgramsPage() {
             <div className="catalog-levels">
               {stream.levels.map((lvl) => (
                 <article key={lvl.level} className="catalog-level-card">
-                  <div className="catalog-level-badge">{lvl.level}</div>
-                  <div>
+                  <div className="catalog-level-media">
+                    <img src={stream.image} alt={`${stream.stream} ${lvl.level}`} loading="lazy" />
+                  </div>
+                  <div className="catalog-level-body">
+                    <div className="catalog-level-badge">{lvl.level}</div>
                     <p className="catalog-grades">{lvl.grades}</p>
                     <p>{lvl.focus}</p>
                   </div>

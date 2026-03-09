@@ -83,6 +83,9 @@ function ProductsPage() {
         <div className="curriculum-product-grid">
           {programCatalog.map((stream) => (
             <article key={stream.slug} className="curriculum-product-card">
+              <div className="curriculum-product-media">
+                <img src={stream.image} alt={stream.imageAlt ?? stream.stream} loading="lazy" />
+              </div>
               <div className="curriculum-product-header">
                 <h2>{stream.stream}</h2>
                 <span className="curriculum-level-count">{stream.levels.length} levels</span>

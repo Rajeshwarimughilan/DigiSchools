@@ -91,7 +91,6 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
     <section className="moving-cards-block" aria-label={title}>
       <div className="moving-cards-head">
         <h3>{title}</h3>
-        <p className="moving-cards-hint">Hover to pause · scroll or drag to browse</p>
       </div>
       <div className="moving-cards-viewport" ref={viewportRef}>
         <div className="moving-cards-track" ref={trackRef}>

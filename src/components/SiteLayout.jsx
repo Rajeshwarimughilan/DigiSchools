@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { contactInfo, navItems } from '../content/siteData'
+import { contactInfo, navItems, partnerLogos, socialLinks } from '../content/siteData'
 
 function SiteLayout() {
   const location = useLocation()
@@ -63,18 +63,34 @@ function SiteLayout() {
               DigiSchool Corporation
             </NavLink>
           </div>
-          <nav className="site-nav" aria-label="Primary navigation">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === '/'}
-                className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
+          <div className="header-right">
+            <div className="header-socials" aria-label="Social links">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-pill"
+                  aria-label={item.label}
+                >
+                  {item.short}
+                </a>
+              ))}
+            </div>
+            <nav className="site-nav" aria-label="Primary navigation">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.to === '/'}
+                  className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
         </div>
       </header>
 
@@ -84,6 +100,22 @@ function SiteLayout() {
             <Outlet />
           </div>
         </main>
+
+        <section className="partner-strip" aria-label="Partner institutions">
+          <div className="partner-strip-head">
+            <h3>Schools Who Trust Us</h3>
+          </div>
+          <div className="partner-marquee">
+            <div className="partner-track">
+              {[...partnerLogos, ...partnerLogos].map((partner, idx) => (
+                <div className="partner-logo-only" key={`${partner.name}-${idx}`} title={partner.name}>
+                  <span className="partner-mark" aria-hidden="true">{partner.short}</span>
+                  <span className="sr-only">{partner.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <footer className="site-footer">
           <div>
@@ -98,6 +130,19 @@ function SiteLayout() {
             <a href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`}>{contactInfo.phone}</a>
             <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
             <p>{contactInfo.location}</p>
+            <div className="footer-socials" aria-label="Footer social links">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-text-link"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <nav className="footer-nav" aria-label="Footer navigation">

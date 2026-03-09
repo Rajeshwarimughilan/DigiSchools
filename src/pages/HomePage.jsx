@@ -11,10 +11,12 @@ import {
   homeAchievementsPreview,
   homeCorpSummary,
   impactHighlights,
+  latestNews,
   media,
   missionPoints,
   productPlatforms,
   quickStats,
+  rdTeam,
 } from '../content/siteData'
 
 function HomePage() {
@@ -82,7 +84,7 @@ function HomePage() {
       </section>
 
       {/* ── Mission ──────────────────────────────────────────────── */}
-      <section className="section-block compact-top">
+      <section className="section-block is-plain compact-top">
         <SectionHeading
           eyebrow="Mission"
           title="Advancing Research-Driven Learning and Real-World Product Innovation"
@@ -104,7 +106,7 @@ function HomePage() {
       </section>
 
       {/* ── Core Domains ─────────────────────────────────────────── */}
-      <section className="section-block compact-top">
+      <section className="section-block is-plain compact-top">
         <SectionHeading
           eyebrow="Core Domains"
           title="Three Engines Working as One Integrated System"
@@ -141,7 +143,7 @@ function HomePage() {
       </section>
 
       {/* ── Platform Highlights scroll row ───────────────────────── */}
-      <section className="section-block compact-top">
+      <section className="section-block is-plain compact-top">
         <SectionHeading
           eyebrow="Our Platforms"
           title="Four Technology Platforms, One Ecosystem"
@@ -153,8 +155,60 @@ function HomePage() {
         />
       </section>
 
+      {/* ── R&D Leadership Spotlight ─────────────────────────────── */}
+      <section className="section-block is-plain compact-top">
+        <SectionHeading
+          eyebrow="R&D Leadership"
+          title="The Team Behind DigiSchool's Research Direction"
+          intro="Our research division is guided by experienced academic and industry leadership across AI, IoT, and embedded innovation."
+        />
+        <div className="rd-leadership-spotlight">
+          <div className="rd-leadership-copy">
+            <p>
+              DigiSchool's R&D leadership drives project selection, publication quality,
+              prototype rigor, and institutional collaboration outcomes across all technology
+              domains.
+            </p>
+            <Link className="btn btn-ghost" to="/domains#rd-leadership">
+              View Full R&D Leadership
+            </Link>
+          </div>
+          <div className="rd-leadership-grid">
+            {rdTeam.map((member) => (
+              <article key={member.name} className="rd-leadership-person">
+                <div className="rd-leadership-photo-wrap">
+                  <img src={member.image} alt={member.imageAlt ?? member.name} loading="lazy" />
+                </div>
+                <h3>{member.name}</h3>
+                <p className="rd-leadership-role">{member.role}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Latest News ──────────────────────────────────────────── */}
+      <section className="section-block is-plain compact-top">
+        <SectionHeading
+          eyebrow="Latest"
+          title="Latest News"
+          intro="Recent updates from DigiSchool programs, research, and partner collaborations."
+        />
+        <div className="latest-news-grid" role="list" aria-label="Latest DigiSchool news">
+          {latestNews.map((item) => (
+            <article key={item.title} className="news-item" role="listitem">
+              <img src={item.image} alt={item.imageAlt ?? item.title} loading="lazy" />
+              <p className="news-date">{item.date}</p>
+              <h3>{item.title}</h3>
+              <p>{item.summary}</p>
+              <Link to={item.href} className="news-link">Read more</Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* ── Achievements Preview ─────────────────────────────────── */}
-      <section className="section-block compact-top">
+      <section className="section-block is-plain compact-top">
         <SectionHeading
           eyebrow="Achievements"
           title="Measurable Impact Across Research, Education, and Industry"

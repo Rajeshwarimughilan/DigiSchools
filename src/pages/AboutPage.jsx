@@ -42,7 +42,7 @@ function AboutPage() {
       <section className="section-block compact-top">
         <SectionHeading
           eyebrow="Capabilities"
-          title="12 Core Technology Domains We Work In"
+          title="Core Technology Domains We Work In"
           intro="Our teams operate across a broad but interconnected set of technology areas, enabling us to deliver integrated solutions from hardware to software to intelligent systems."
         />
 

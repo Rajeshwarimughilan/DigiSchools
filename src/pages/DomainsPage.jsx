@@ -43,7 +43,7 @@ function DomainsPage() {
         </div>
       </section>
 
-      <section className="section-block compact-top">
+      <section id="rd-leadership" className="section-block compact-top">
         <SectionHeading
           eyebrow="R&D Leadership"
           title="Research Team Driving DigiSchool Innovation"

@@ -9,6 +9,21 @@ export const navItems = [
   { label: 'Contact', to: '/contact' },
 ]
 
+export const socialLinks = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com', short: 'in' },
+  { label: 'Instagram', href: 'https://www.instagram.com', short: 'ig' },
+  { label: 'YouTube', href: 'https://www.youtube.com', short: 'yt' },
+]
+
+export const partnerLogos = [
+  { name: 'Kendriya Vidyalaya', short: 'KV' },
+  { name: 'Little Scholars High School', short: 'LS' },
+  { name: 'PSBB Learning Leadership Academy', short: 'PS' },
+  { name: 'Sagar Public School', short: 'SPS' },
+  { name: 'Shishukunj International School', short: 'SI' },
+  { name: 'Smart Greenfield High School', short: 'SG' },
+]
+
 export const quickStats = [
   { label: 'Real-Time IoT & Tech Projects', value: '600+' },
   { label: 'Happy Customers', value: '2000+' },
@@ -283,12 +298,16 @@ export const rdTeam = [
   {
     name: 'Dr. Sreejith Vignesh B P',
     role: 'R&D Lead',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+    imageAlt: 'Portrait of research and development leader',
     profile:
       'Principal researcher driving applied innovation in AI, IoT, embedded systems, and drone technology with extensive academic and industry qualifications.',
   },
   {
     name: 'Dr. K. Pradeep Kumar',
     role: 'Research Advisor',
+    image: 'https://images.unsplash.com/photo-1573496799515-eebbb63814f2?auto=format&fit=crop&w=600&q=80',
+    imageAlt: 'Portrait of research advisor',
     profile:
       'Subject matter expert supporting advanced research, publication initiatives, and collaborative development programs across engineering and technology domains.',
   },
@@ -506,6 +525,45 @@ export const homeAchievementsPreview = [
   { stat: '4+ Cr', label: 'Total Research Funding Over 8 Years' },
   { stat: '85+', label: 'Active Industry, College & School MoUs' },
   { stat: '600+', label: 'IoT & Technology Projects Delivered' },
+]
+
+export const latestNews = [
+  {
+    title: 'ATMAN 2.0 Field Trials Expanded Across New Test Beds',
+    summary:
+      'DigiSchool expanded IoT-based smart agriculture field trials with additional soil and climate telemetry nodes to improve irrigation and crop decision systems.',
+    date: 'March 2026',
+    image: 'https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=900&q=80',
+    imageAlt: 'Smart agriculture field with data monitoring sensors',
+    href: '/impact',
+  },
+  {
+    title: 'New Industry MoUs Signed for Embedded Systems Projects',
+    summary:
+      'Three additional industrial collaborations were formalized to co-develop embedded monitoring systems and student internship pipelines.',
+    date: 'February 2026',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
+    imageAlt: 'Team discussion during industry collaboration meeting',
+    href: '/domains',
+  },
+  {
+    title: 'Robotics School Labs Cross 30 Active Campuses',
+    summary:
+      'DigiSchool school partners now run structured robotics and STEM lab sessions in 30+ campuses with teacher enablement support.',
+    date: 'January 2026',
+    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80',
+    imageAlt: 'Students participating in robotics lab learning session',
+    href: '/programs',
+  },
+  {
+    title: 'GBroGo Startup Showcase Published for Student Teams',
+    summary:
+      'Student founders across AI, IoT, and automation projects presented validated prototypes through the GBroGo showcase cycle.',
+    date: 'December 2025',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80',
+    imageAlt: 'Students collaborating on startup prototype development',
+    href: '/products',
+  },
 ]
 
 // ── Achievement Cards (for moving card row on Impact/Home pages) ──────────────
