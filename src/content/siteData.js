@@ -1,18 +1,24 @@
+export const utilityNavItems = [
+  { label: 'Impact', to: '/impact' },
+  { label: 'Policies', to: '/policies' },
+]
+
 export const navItems = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Domains', to: '/domains' },
-  { label: 'Programs', to: '/programs' },
-  { label: 'Products', to: '/products' },
-  { label: 'Impact', to: '/impact' },
+  { label: 'School', to: '/school' },
+  { label: 'College Innovation', to: '/college-innovation' },
+  { label: 'R&D Solutions', to: '/rd-solutions' },
+  { label: 'Services', to: '/services' },
+  { label: 'Team', to: '/team' },
   { label: 'Support', to: '/support' },
-  { label: 'Contact', to: '/contact' },
 ]
 
 export const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com', short: 'in' },
   { label: 'Instagram', href: 'https://www.instagram.com', short: 'ig' },
   { label: 'YouTube', href: 'https://www.youtube.com', short: 'yt' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com', short: 'in' },
+  { label: 'Facebook', href: 'https://www.facebook.com', short: 'fb' },
 ]
 
 export const partnerLogos = [
@@ -28,7 +34,7 @@ export const quickStats = [
   { label: 'Real-Time IoT & Tech Projects', value: '600+' },
   { label: 'Happy Customers', value: '2000+' },
   { label: 'Funding Secured in 8 Years', value: '4 Crore+' },
-  { label: 'Major Agri-Tech Initiative', value: 'ATMAN 2.0' },
+  { label: 'Major Agri-Tech Initiative', value: 'ATMAN-80' },
 ]
 
 export const missionPoints = [
@@ -37,6 +43,112 @@ export const missionPoints = [
   'Develop AI, IoT, and robotics solutions for industries',
   'Provide advanced technology education for schools and colleges',
   'Support patents, copyrights, and research publications',
+]
+
+export const mainObjectives = [
+  'Industrial automation solutions aligned to real operational needs',
+  'Customized software development for institutions and industry',
+  'Cloud computation and connected digital infrastructure',
+  'Complete end-to-end delivery from concept to deployment and support',
+]
+
+export const schoolFocus = {
+  scope: 'KG to 8th Grade',
+  intro:
+    'DigiSchool school programs are intentionally designed for KG to 8th grade learners, combining foundation academics with applied technology exposure.',
+  offerings: [
+    {
+      title: 'Academic Books',
+      detail: 'Dedicated academic book solutions mapped to grade-wise classroom outcomes for KG through Grade 8.',
+    },
+    {
+      title: 'AI Labs and STEM Labs',
+      detail: 'Hands-on lab implementation with activity-driven training modules and teacher enablement.',
+    },
+    {
+      title: 'I Speak English - Teacher Special Edition',
+      detail: 'A teacher-first language delivery edition with guided classroom plans, assessments, and communication activities.',
+    },
+  ],
+}
+
+export const collegeInnovationModel = {
+  pipeline: [
+    'Potential Project Identification',
+    'Feasibility and Future-Solution Validation',
+    'Prototype and Product Direction',
+    'Mentoring, Testing, and Demo Readiness',
+    'Deployment or Funding Pathway',
+  ],
+  services: [
+    'Support for student projects with potential to become future solutions',
+    'Guidance for product development using a structured lifecycle',
+    'Patent and copyright mentorship',
+    'Journal publication and international conference support',
+    'Proposal drafting for funding and guidance support',
+    'One credit courses and hands-on workshops',
+  ],
+}
+
+export const rdSolutionsModel = [
+  {
+    title: 'Industry Standards First',
+    detail: 'Every R&D engagement follows industry standards, documentation discipline, and measurable quality checkpoints.',
+  },
+  {
+    title: 'Team Support and Customization',
+    detail: 'Cross-functional teams provide customization, implementation support, and long-term maintenance aligned to client constraints.',
+  },
+  {
+    title: 'IoT and Embedded Systems',
+    detail: 'Focused delivery in IoT architectures, embedded firmware, hardware integration, and edge-connected systems.',
+  },
+]
+
+export const serviceCatalog = [
+  {
+    title: 'Customized GBrow',
+    points: [
+      'An IoT development hardware tool designed for structured lab deployment',
+      'ESP32-centered learning workflows for practical embedded and IoT training',
+      'Built for school and college innovation programs',
+    ],
+  },
+  {
+    title: 'ERP Software for Schools and Colleges',
+    points: [
+      'Financial maintenance workflows',
+      'Billing management and fee tracking',
+      'Accounts and institutional reporting support',
+    ],
+  },
+  {
+    title: 'DigiChat Community Platform',
+    points: [
+      'Institution-only community communication model',
+      'Runs in school or college computation/server environments',
+      'Controls unauthorized access and security breaches through managed membership',
+    ],
+  },
+]
+
+export const teamPillars = [
+  {
+    group: 'R&D Engineering',
+    scope: 'Applied research, IoT, embedded systems, and standards-based technical validation.',
+  },
+  {
+    group: 'Product and Software',
+    scope: 'Customized software development, cloud computation, ERP, and communication platforms.',
+  },
+  {
+    group: 'Academic and Program Delivery',
+    scope: 'School and college deployment, one credit courses, workshops, and faculty support.',
+  },
+  {
+    group: 'Implementation and Support',
+    scope: 'End-to-end rollout, training, operational support, and long-term client success.',
+  },
 ]
 
 export const domains = [
@@ -113,7 +225,7 @@ export const productPlatforms = [
       'DigiSchool engineers purpose-built IoT systems tailored to the precise requirements of industrial monitoring, smart agriculture, environmental sensing, and process automation. Every deployment is designed for reliability, real-time data access, and long-term maintainability.',
     tags: ['Industrial IoT', 'Smart Agriculture', 'Environmental Sensing', 'Automation', 'Cloud Pipelines'],
     highlights: [
-      'ATMAN 2.0 smart agriculture monitoring at IIT Bombay',
+      'ATMAN-80 smart agriculture monitoring in collaboration with IIT Bombay and Nandha Engineering College',
       'Custom sensor networks for industrial process control',
       'Remote telemetry and cloud dashboard integration',
       'Edge computing modules for low-latency decisions',
@@ -207,8 +319,8 @@ export const fundingMilestones = [
   {
     year: 'Year 6–7',
     amount: '₹80 L',
-    label: 'ATMAN 2.0 — IIT Bombay',
-    detail: 'Selected for the prestigious ATMAN 2.0 agri-tech initiative at IIT Bombay. DigiSchool deployed IoT-based precision agriculture monitoring at scale with ₹80 Lakhs in backing.',
+    label: 'ATMAN-80 — IIT Bombay and Nandha Engineering College',
+    detail: 'Selected for the ATMAN-80 agri-tech initiative in collaboration with IIT Bombay and Nandha Engineering College. DigiSchool deployed IoT-based precision agriculture monitoring at scale with ₹80 Lakhs in backing.',
   },
   {
     year: 'Year 8',
@@ -227,9 +339,9 @@ export const awardHighlights = [
     image: 'https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=800&q=80',
   },
   {
-    award: 'ATMAN 2.0 Selection',
-    body: 'IIT Bombay Agri-Tech Initiative',
-    significance: 'Selected among national applicants for the IIT Bombay-backed smart agriculture technology development program.',
+    award: 'ATMAN-80 Collaboration Milestone',
+    body: 'IIT Bombay and Nandha Engineering College',
+    significance: 'A flagship agri-tech collaboration milestone with IIT Bombay and Nandha Engineering College, backed by major funding support.',
     image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80',
   },
 ]
@@ -529,7 +641,7 @@ export const homeAchievementsPreview = [
 
 export const latestNews = [
   {
-    title: 'ATMAN 2.0 Field Trials Expanded Across New Test Beds',
+    title: 'ATMAN-80 Field Trials Expanded Across New Test Beds',
     summary:
       'DigiSchool expanded IoT-based smart agriculture field trials with additional soil and climate telemetry nodes to improve irrigation and crop decision systems.',
     date: 'March 2026',
@@ -553,7 +665,7 @@ export const latestNews = [
     date: 'January 2026',
     image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80',
     imageAlt: 'Students participating in robotics lab learning session',
-    href: '/programs',
+    href: '/school',
   },
   {
     title: 'GBroGo Startup Showcase Published for Student Teams',
@@ -576,8 +688,8 @@ export const achievementCards = [
     imageAlt: 'Award and recognition ceremony',
   },
   {
-    title: 'ATMAN 2.0 — IIT Bombay',
-    description: 'Selected for the IIT Bombay agri-tech initiative with ₹80 Lakhs backing for IoT-driven precision agriculture.',
+    title: 'ATMAN-80 — IIT Bombay and Nandha Engineering College',
+    description: 'Selected for the ATMAN-80 collaboration initiative with ₹80 Lakhs backing for IoT-driven precision agriculture.',
     image: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Smart agriculture IoT sensors in a field',
   },

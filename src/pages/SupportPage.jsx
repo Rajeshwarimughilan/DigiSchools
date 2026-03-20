@@ -33,7 +33,7 @@ function SupportPage() {
       />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="internal-hero soft-grid" aria-labelledby="support-hero-heading">
+      <section className="support-hero" aria-labelledby="support-hero-heading">
         <div>
           <p className="eyebrow">Support</p>
           <h1 id="support-hero-heading">Help, Contact Channels &amp; Legacy Access</h1>
@@ -42,10 +42,19 @@ function SupportPage() {
             assistance. Archived utility pages from the previous platform are also linked below.
           </p>
         </div>
-        <div className="support-hero-art" aria-hidden="true">
-          <div className="support-art-ring support-art-ring-a" />
-          <div className="support-art-ring support-art-ring-b" />
-          <div className="support-art-label">We&rsquo;re here for you</div>
+        <div className="support-hero-board" aria-hidden="true">
+          <article>
+            <h3>Live Response</h3>
+            <p>&lt; 1 Business Day</p>
+          </article>
+          <article>
+            <h3>Channels</h3>
+            <p>Email, Phone, WhatsApp</p>
+          </article>
+          <article>
+            <h3>Coverage</h3>
+            <p>Programs, Products, Deployments</p>
+          </article>
         </div>
       </section>
 

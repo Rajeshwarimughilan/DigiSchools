@@ -8,6 +8,7 @@ import {
   media,
   productPlatforms,
   programCatalog,
+  serviceCatalog,
   storybooks,
 } from '../content/siteData'
 
@@ -16,7 +17,7 @@ function ProductsPage() {
     <>
       <PageMeta
         title="Technology Products & Platforms"
-        description="DigiSchool's four core platforms — IoT Solutions, DigiChat, GBroGo, and G-BroBoard — plus curriculum kits, storybooks, and full lab infrastructure."
+        description="DigiSchool product and service systems including Customized GBrow (ESP32 IoT hardware), ERP operations modules, DigiChat institution-only communication, curriculum kits, and lab infrastructure."
       />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -25,11 +26,33 @@ function ProductsPage() {
           <p className="eyebrow">Products & Platforms</p>
           <h1>Technology Products Built for Learning and Real-World Deployment</h1>
           <p>
-            Four flagship platforms, a complete curriculum product line, and full-service lab
-            infrastructure — each designed to bridge education, research, and industry.
+            DigiSchool combines hardware products and operational software systems to support
+            institutions end-to-end: from lab learning to communication and administration.
           </p>
         </div>
         <img src={media.innovation} alt="Technology products and platform development" />
+      </section>
+
+      {/* ── Institutional Service Systems ────────────────────────────── */}
+      <section className="section-block compact-top">
+        <SectionHeading
+          eyebrow="Institution Systems"
+          title="Customized GBrow, ERP, and DigiChat"
+          intro="This section captures the core operational systems requested by schools and colleges, including ESP32-centered hardware learning and secure institutional communication infrastructure."
+        />
+
+        <div className="program-columns">
+          {serviceCatalog.map((service) => (
+            <article key={service.title} className="program-column">
+              <h2>{service.title}</h2>
+              <ol>
+                {service.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ol>
+            </article>
+          ))}
+        </div>
       </section>
 
       {/* ── Digital Platforms ────────────────────────────────────────────── */}
@@ -104,7 +127,7 @@ function ProductsPage() {
 
         <p className="curriculum-cta-note">
           Curriculum kits are available as part of institutional programs.{' '}
-          <Link to="/programs">Explore Programs →</Link>
+          <Link to="/school">Explore School Curriculum →</Link>
         </p>
       </section>
 

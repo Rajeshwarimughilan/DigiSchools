@@ -7,17 +7,73 @@ import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
 import {
   achievementCards,
-  domains,
-  homeAchievementsPreview,
   homeCorpSummary,
-  impactHighlights,
   latestNews,
   media,
   missionPoints,
   productPlatforms,
   quickStats,
-  rdTeam,
 } from '../content/siteData'
+
+const focusCircles = [
+  { label: 'School', to: '/school', image: media.classroom },
+  { label: 'College', to: '/college-innovation', image: media.students },
+  { label: 'Industry', to: '/rd-solutions', image: media.innovation },
+]
+
+const objectiveCards = [
+  {
+    title: 'Industrial Automation',
+    detail: 'Automation-first systems engineered for practical operations and measurable efficiency gains.',
+    image: media.innovation,
+  },
+  {
+    title: 'Customized Software',
+    detail: 'Institution-specific software built around workflow needs, compliance constraints, and scalability.',
+    image: media.coding,
+  },
+  {
+    title: 'Cloud Computation',
+    detail: 'Reliable cloud-connected platforms for data pipelines, dashboards, and distributed services.',
+    image: media.hero,
+  },
+  {
+    title: 'End-to-End Delivery',
+    detail: 'From concept to deployment to support, DigiSchool delivers the complete implementation lifecycle.',
+    image: media.partnership,
+  },
+]
+
+const audienceTracks = [
+  {
+    title: 'School (KG-8)',
+    detail: 'Academic books, AI/STEM labs, and teacher-first I Speak English delivery for foundational learning.',
+    to: '/school',
+    image: media.classroom,
+    icon: 'S',
+  },
+  {
+    title: 'College Innovation',
+    detail: 'Project pipeline, product development guidance, publication support, and one credit courses.',
+    to: '/college-innovation',
+    image: media.students,
+    icon: 'C',
+  },
+  {
+    title: 'R&D Solutions',
+    detail: 'Industry-standard, customization-ready IoT and embedded systems execution with long-term support.',
+    to: '/rd-solutions',
+    image: media.robotics,
+    icon: 'R',
+  },
+  {
+    title: 'Services',
+    detail: 'Customized GBrow, ERP operations stack, and DigiChat institutional communication systems.',
+    to: '/services',
+    image: media.coding,
+    icon: 'D',
+  },
+]
 
 function HomePage() {
   return (
@@ -38,11 +94,11 @@ function HomePage() {
             development, and hands-on learning.
           </p>
           <div className="hero-actions">
-            <Link className="btn btn-primary" to="/contact">
+            <Link className="btn btn-primary" to="/support">
               Start a Collaboration
             </Link>
-            <Link className="btn btn-ghost" to="/programs">
-              Explore Programs
+            <Link className="btn btn-ghost" to="/impact">
+              View Impact Record
             </Link>
           </div>
         </div>
@@ -73,13 +129,64 @@ function HomePage() {
             </Link>
           </div>
           <div className="corp-summary-services">
-            <p className="corp-services-label">Technology Areas</p>
-            <div className="service-tags">
-              {homeCorpSummary.serviceAreas.map((area) => (
-                <span key={area} className="service-tag">{area}</span>
+            <p className="corp-services-label">Who We Build For</p>
+            <div className="focus-circles" aria-label="Primary DigiSchool segments">
+              {focusCircles.map((item, index) => (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className={`focus-circle focus-circle-${index + 1}`}
+                  aria-label={`${item.label} solutions`}
+                >
+                  <img src={item.image} alt={`${item.label} segment`} loading="lazy" />
+                  <span>{item.label}</span>
+                </Link>
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Main Objective ─────────────────────────────────────── */}
+      <section className="section-block compact-top">
+        <SectionHeading
+          eyebrow="Main Objective"
+          title="Industrial Automation to Cloud Computation - End-to-End"
+          intro="DigiSchool operates as a complete solution provider across industrial automation, customized software development, cloud computation, and long-term deployment support."
+        />
+        <div className="objective-card-grid">
+          {objectiveCards.map((item) => (
+            <article key={item.title} className="objective-card">
+              <img src={item.image} alt={item.title} loading="lazy" />
+              <div className="objective-card-overlay">
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Who We Serve ─────────────────────────────────────── */}
+      <section className="section-block is-plain compact-top">
+        <SectionHeading
+          eyebrow="Who We Serve"
+          title="Delivery Tracks Across the DigiSchool Ecosystem"
+          intro="Our operating model serves four distinct segments with dedicated solutions and deployment pathways."
+        />
+        <div className="audience-grid">
+          {audienceTracks.map((item) => (
+            <Link key={item.title} to={item.to} className="audience-card-split">
+              <div className="audience-card-left">
+                <span className="audience-icon" aria-hidden="true">{item.icon}</span>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+              <div className="audience-card-right">
+                <img src={item.image} alt={item.title} loading="lazy" />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -105,23 +212,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ── Core Domains ─────────────────────────────────────────── */}
-      <section className="section-block is-plain compact-top">
-        <SectionHeading
-          eyebrow="Core Domains"
-          title="Three Engines Working as One Integrated System"
-          intro="The corporation works through a connected domain model that aligns R&D, college innovation, and school technology programs."
-        />
-        <div className="domain-track">
-          {domains.map((domain) => (
-            <Link key={domain.title} to={domain.route} className="domain-track-item">
-              <h3>{domain.title}</h3>
-              <p>{domain.subtitle}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ── Flagship Initiatives ─────────────────────────────────── */}
       <section className="section-block">
         <SectionHeading
@@ -130,8 +220,8 @@ function HomePage() {
           intro="From government-recognized R&D awards to nationally supported agri-tech programs, these initiatives represent DigiSchool at its most ambitious."
         />
         <FeatureBand
-          title="ATMAN 2.0 — Smart Agriculture at IIT Bombay"
-          text="A landmark IoT-driven precision farming initiative backed by ₹80 Lakhs in support. DigiSchool's ATMAN 2.0 deploys real-time sensor networks, drone monitoring, and automated irrigation systems to redefine agricultural intelligence at scale."
+          title="ATMAN-80 - Smart Agriculture with IIT Bombay and Nandha Engineering College"
+          text="A landmark IoT-driven precision farming initiative backed by ₹80 Lakhs in support. DigiSchool's ATMAN-80 deployment uses real-time sensor networks, drone monitoring, and automated irrigation systems to redefine agricultural intelligence at scale."
           image={media.lab}
         />
         <FeatureBand
@@ -153,38 +243,6 @@ function HomePage() {
           title="Explore Our Core Platforms"
           items={productPlatforms}
         />
-      </section>
-
-      {/* ── R&D Leadership Spotlight ─────────────────────────────── */}
-      <section className="section-block is-plain compact-top">
-        <SectionHeading
-          eyebrow="R&D Leadership"
-          title="The Team Behind DigiSchool's Research Direction"
-          intro="Our research division is guided by experienced academic and industry leadership across AI, IoT, and embedded innovation."
-        />
-        <div className="rd-leadership-spotlight">
-          <div className="rd-leadership-copy">
-            <p>
-              DigiSchool's R&D leadership drives project selection, publication quality,
-              prototype rigor, and institutional collaboration outcomes across all technology
-              domains.
-            </p>
-            <Link className="btn btn-ghost" to="/domains#rd-leadership">
-              View Full R&D Leadership
-            </Link>
-          </div>
-          <div className="rd-leadership-grid">
-            {rdTeam.map((member) => (
-              <article key={member.name} className="rd-leadership-person">
-                <div className="rd-leadership-photo-wrap">
-                  <img src={member.image} alt={member.imageAlt ?? member.name} loading="lazy" />
-                </div>
-                <h3>{member.name}</h3>
-                <p className="rd-leadership-role">{member.role}</p>
-              </article>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── Latest News ──────────────────────────────────────────── */}
@@ -209,27 +267,6 @@ function HomePage() {
 
       {/* ── Achievements Preview ─────────────────────────────────── */}
       <section className="section-block is-plain compact-top">
-        <SectionHeading
-          eyebrow="Achievements"
-          title="Measurable Impact Across Research, Education, and Industry"
-          intro="Eight years of sustained innovation have produced real, documented outcomes across funding, partnerships, and program delivery."
-        />
-        <div className="achievements-preview">
-          {homeAchievementsPreview.map((item, i) => (
-            <article key={item.label} className="achievement-card">
-              <AnimatedStat value={item.stat} className="achievement-stat" index={i} />
-              <p className="achievement-label">{item.label}</p>
-            </article>
-          ))}
-        </div>
-        <ul className="home-impact-list">
-          {impactHighlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
-        <div className="home-impact-cta">
-          <Link className="btn btn-ghost" to="/impact">View Full Impact Report</Link>
-        </div>
         <MovingCardsRow
           title="Key Milestones & Achievements"
           items={achievementCards}
@@ -246,8 +283,8 @@ function HomePage() {
             bodies to design, implement, and sustain world-class technology education ecosystems.
           </p>
           <div className="home-cta-actions">
-            <Link className="btn btn-primary" to="/contact">Start a Collaboration</Link>
-            <Link className="btn btn-ghost-light" to="/programs">Browse Programs</Link>
+            <Link className="btn btn-primary" to="/support">Start a Collaboration</Link>
+            <Link className="btn btn-ghost-light" to="/school">Browse School Programs</Link>
           </div>
         </div>
       </section>

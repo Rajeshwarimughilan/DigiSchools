@@ -1,6 +1,35 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { contactInfo, navItems, partnerLogos, socialLinks } from '../content/siteData'
+import { contactInfo, navItems, partnerLogos, socialLinks, utilityNavItems } from '../content/siteData'
+
+const socialIconMap = {
+  Instagram: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.25" cy="6.75" r="1" fill="currentColor" />
+    </svg>
+  ),
+  YouTube: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3" y="6" width="18" height="12" rx="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M10 9.3 15 12l-5 2.7Z" fill="currentColor" />
+    </svg>
+  ),
+  LinkedIn: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="8.2" cy="9" r="1.2" fill="currentColor" />
+      <path d="M7.2 11h2v6h-2zM11.2 11h1.9v.9c.4-.6 1.2-1.1 2.3-1.1 2.1 0 2.8 1.4 2.8 3.5V17h-2V14.7c0-1-.2-2-1.5-2-1.3 0-1.5 1-1.5 2V17h-2z" fill="currentColor" />
+    </svg>
+  ),
+  Facebook: (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M13.9 18v-5h1.8l.3-2H14v-1.2c0-.6.2-1 1-1h1.1V7h-1.7c-1.8 0-2.6 1.1-2.6 2.7V11h-1.7v2h1.7v5z" fill="currentColor" />
+    </svg>
+  ),
+}
 
 function SiteLayout() {
   const location = useLocation()
@@ -57,13 +86,19 @@ function SiteLayout() {
       {/* ── Full-width sticky header ─────────────────────────────── */}
       <header className="site-header">
         <div className="site-header-inner">
-          <div className="brand-block">
-            <p className="brand-kicker">Innovation, Research & Future Technology Education Platform</p>
-            <NavLink to="/" className="brand-link">
-              DigiSchool Corporation
-            </NavLink>
-          </div>
-          <div className="header-right">
+          <div className="utility-bar" aria-label="Utility navigation and social links">
+            <nav className="utility-nav" aria-label="Utility links">
+              {utilityNavItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) => (isActive ? 'utility-link active' : 'utility-link')}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+
             <div className="header-socials" aria-label="Social links">
               {socialLinks.map((item) => (
                 <a
@@ -74,10 +109,20 @@ function SiteLayout() {
                   className="social-pill"
                   aria-label={item.label}
                 >
-                  {item.short}
+                  {socialIconMap[item.label] ?? <span>{item.short}</span>}
                 </a>
               ))}
             </div>
+          </div>
+
+          <div className="main-header-row">
+            <div className="brand-block">
+              <p className="brand-kicker">Innovation, Research & Future Technology Education Platform</p>
+              <NavLink to="/" className="brand-link">
+                DigiSchool Corporation
+              </NavLink>
+            </div>
+
             <nav className="site-nav" aria-label="Primary navigation">
               {navItems.map((item) => (
                 <NavLink
@@ -121,8 +166,8 @@ function SiteLayout() {
           <div>
             <p className="footer-title">DigiSchool Corporation</p>
             <p className="footer-copy">
-              Building a global ecosystem where education, research, and industry collaborate to shape
-              future-ready technology solutions.
+              Industrial automation, customized software development, and cloud computation delivered
+              as an end-to-end institutional and R&D solution stack.
             </p>
           </div>
 
@@ -147,10 +192,18 @@ function SiteLayout() {
 
           <nav className="footer-nav" aria-label="Footer navigation">
             <NavLink to="/about" className="footer-link">About</NavLink>
+            <NavLink to="/school" className="footer-link">School</NavLink>
+            <NavLink to="/college-innovation" className="footer-link">College</NavLink>
+            <NavLink to="/rd-solutions" className="footer-link">R&D</NavLink>
+            <NavLink to="/services" className="footer-link">Services</NavLink>
+            <NavLink to="/team" className="footer-link">Team</NavLink>
+            <NavLink to="/support" className="footer-link">Support</NavLink>
+          </nav>
+
+          <nav className="footer-nav" aria-label="Footer utility navigation">
             <NavLink to="/impact" className="footer-link">Impact</NavLink>
             <NavLink to="/support" className="footer-link">Support</NavLink>
             <NavLink to="/policies" className="footer-link">Policies</NavLink>
-            <NavLink to="/contact" className="footer-link">Contact</NavLink>
           </nav>
         </footer>
       </div>

@@ -18,7 +18,7 @@ function ImpactPage() {
     <>
       <PageMeta
         title="Impact & Achievements"
-        description="8 years of DigiSchool impact — \u20b94+ Crore in research funding, 85+ MoUs, 2000+ students trained, SCSTE award recognition, and ATMAN 2.0 at IIT Bombay."
+        description="8 years of DigiSchool impact — \u20b94+ Crore in research funding, 85+ MoUs, 2000+ students trained, SCSTE award recognition, and ATMAN-80 collaboration with IIT Bombay and Nandha Engineering College."
       />
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -32,7 +32,12 @@ function ImpactPage() {
             documented, measurable, and growing.
           </p>
         </div>
-        <img src={media.hero} alt="Innovation outcomes and achievement milestones" className="impact-hero-img" />
+        <div className="impact-hero-visual">
+          <img src={media.hero} alt="Innovation outcomes and achievement milestones" className="impact-hero-img" />
+          <span className="impact-hero-badge impact-hero-badge-a">4+ Cr Funding</span>
+          <span className="impact-hero-badge impact-hero-badge-b">85+ MoUs</span>
+          <span className="impact-hero-badge impact-hero-badge-c">2000+ Students</span>
+        </div>
       </section>
 
       {/* ── Outcome Stats Ribbon ─────────────────────────────────────────── */}
@@ -160,7 +165,7 @@ function ImpactPage() {
             joint research initiatives.
           </p>
           <div className="impact-cta-actions">
-            <Link className="btn btn-primary" to="/contact">Start a Collaboration</Link>
+            <Link className="btn btn-primary" to="/support">Start a Collaboration</Link>
             <Link className="btn btn-ghost-light" to="/domains">Explore R&D Domains</Link>
           </div>
         </div>

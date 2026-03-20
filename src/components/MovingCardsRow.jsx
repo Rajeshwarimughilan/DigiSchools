@@ -10,10 +10,11 @@ import { useEffect, useRef } from 'react'
  * `items` can be any of the siteData arrays — the component reads
  *  the first matching field for title / description / image.
  */
-function MovingCardsRow({ title, items, speed = 0.45 }) {
+function MovingCardsRow({ title, items, speed = 1.2 }) {
   const viewportRef = useRef(null)
   const trackRef = useRef(null)
   const offsetRef = useRef(0)
+  const loopWidthRef = useRef(0)
   const pausedRef = useRef(false)
   const touchStartXRef = useRef(0)
   const rafRef = useRef(null)
@@ -26,15 +27,47 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
     const track = trackRef.current
     if (!viewport || !track) return
 
-    // Half of scrollWidth = width of one complete set of cards
-    const getHalfWidth = () => track.scrollWidth / 2
+    const measureLoopWidth = () => {
+      const cards = Array.from(track.children)
+      const count = items.length
+      if (!count || cards.length < count) return 0
+
+      const styles = getComputedStyle(track)
+      const gapRaw = styles.columnGap || styles.gap || '0'
+      const gap = Number.parseFloat(gapRaw) || 0
+
+      let width = 0
+      for (let i = 0; i < count; i += 1) {
+        width += cards[i].getBoundingClientRect().width
+      }
+
+      // First set width only (internal gaps, no seam gap to the duplicated set)
+      return width + gap * Math.max(0, count - 1)
+    }
+
+    const refreshLoopWidth = () => {
+      loopWidthRef.current = measureLoopWidth()
+      if (loopWidthRef.current > 0) {
+        offsetRef.current = ((offsetRef.current % loopWidthRef.current) + loopWidthRef.current) % loopWidthRef.current
+      }
+    }
+
+    refreshLoopWidth()
+
+    let ro = null
+    if ('ResizeObserver' in window) {
+      ro = new ResizeObserver(refreshLoopWidth)
+      ro.observe(track)
+    }
+
+    window.addEventListener('resize', refreshLoopWidth)
 
     const tick = () => {
       if (!pausedRef.current) {
         offsetRef.current += speed
-        const half = getHalfWidth()
-        if (half > 0 && offsetRef.current >= half) {
-          offsetRef.current -= half
+        const loop = loopWidthRef.current
+        if (loop > 0 && offsetRef.current >= loop) {
+          offsetRef.current -= loop
         }
       }
       track.style.transform = `translateX(-${offsetRef.current}px)`
@@ -46,8 +79,9 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
     const onWheel = (e) => {
       e.preventDefault()
       const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY * 0.6
-      const half = getHalfWidth()
-      offsetRef.current = ((offsetRef.current + delta) % half + half) % half
+      const loop = loopWidthRef.current
+      if (!loop) return
+      offsetRef.current = ((offsetRef.current + delta) % loop + loop) % loop
     }
 
     const onTouchStart = (e) => {
@@ -58,8 +92,9 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
     const onTouchMove = (e) => {
       const delta = touchStartXRef.current - e.touches[0].clientX
       touchStartXRef.current = e.touches[0].clientX
-      const half = getHalfWidth()
-      offsetRef.current = ((offsetRef.current + delta) % half + half) % half
+      const loop = loopWidthRef.current
+      if (!loop) return
+      offsetRef.current = ((offsetRef.current + delta) % loop + loop) % loop
     }
 
     const onTouchEnd = () => {
@@ -78,6 +113,8 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
 
     return () => {
       cancelAnimationFrame(rafRef.current)
+      if (ro) ro.disconnect()
+      window.removeEventListener('resize', refreshLoopWidth)
       viewport.removeEventListener('wheel', onWheel)
       viewport.removeEventListener('touchstart', onTouchStart)
       viewport.removeEventListener('touchmove', onTouchMove)
@@ -85,7 +122,7 @@ function MovingCardsRow({ title, items, speed = 0.45 }) {
       viewport.removeEventListener('mouseenter', onMouseEnter)
       viewport.removeEventListener('mouseleave', onMouseLeave)
     }
-  }, [speed])
+  }, [items.length, speed])
 
   return (
     <section className="moving-cards-block" aria-label={title}>

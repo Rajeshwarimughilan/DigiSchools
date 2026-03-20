@@ -11,7 +11,7 @@ const INTERVAL = DURATION / STEPS // ~33ms per tick
  * 'ATMAN 2.0' → null  (starts with alpha — not a counter metric)
  */
 function parseValue(str) {
-  const match = str.match(/^([^0-9a-zA-Z\u0900-\u097F]*)(\d+(?:\.\d+)?)(.*)$/)
+  const match = str.match(/^([^0-9A-Za-z]*)(\d+(?:\.\d+)?)(.*)$/)
   if (!match) return null
   const num = parseFloat(match[2])
   if (!Number.isFinite(num) || num === 0) return null
@@ -42,7 +42,7 @@ export default function AnimatedStat({ value, className, style, index = 0, anima
     observer.observe(observedEl)
 
     return () => observer.disconnect()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!parsed) return
