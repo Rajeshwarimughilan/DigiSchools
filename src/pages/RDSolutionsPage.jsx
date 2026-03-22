@@ -1,9 +1,12 @@
 import MovingCardsRow from '../components/MovingCardsRow'
 import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
-import { media, programCatalog, rdSolutionsModel } from '../content/siteData'
+import { useAdminContent } from '../context/AdminContentContext'
+import { media, rdSolutionsModel } from '../content/siteData'
 
 function RDSolutionsPage() {
+  const { content } = useAdminContent()
+
   return (
     <>
       <PageMeta
@@ -63,7 +66,7 @@ function RDSolutionsPage() {
       <section className="section-block compact-top">
         <MovingCardsRow
           title="Program Streams at a Glance"
-          items={programCatalog}
+          items={content.rdProgramStreams}
         />
       </section>
     </>

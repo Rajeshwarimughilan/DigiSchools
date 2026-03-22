@@ -1,30 +1,14 @@
 import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
+import { useAdminContent } from '../context/AdminContentContext'
 import { legacyLinks, supportChannels } from '../content/siteData'
-
-const FAQ = [
-  {
-    q: 'How do I enquire about a school or college program?',
-    a: 'Email us at info@digischl.com or call +91 99421 07795 with your institution name, grade range, and the program you are interested in. Our team will respond within one business day.',
-  },
-  {
-    q: 'Can DigiSchool design a custom STEM or robotics lab for my school?',
-    a: 'Yes. We provide turnkey lab infrastructure — planning, procurement, installation, teacher training, and ongoing support. Reach out via phone or email to begin the process.',
-  },
-  {
-    q: 'I have a pending order from the old platform. How do I follow up?',
-    a: 'Use the Cart & Checkout legacy link in the Archived Utility Pages section below, or email info@digischl.com directly with your order reference.',
-  },
-  {
-    q: 'How do I get technical support for the G-BroBoard or classroom hardware?',
-    a: 'Contact our team via WhatsApp at +91 99421 07795 for fastest response on hardware issues. Alternatively email us with photos and a description of the issue.',
-  },
-]
 
 // Derive first letter of title for icon circle
 const channelInitial = (title) => title.replace(/\s+Support$/i, '').charAt(0)
 
 function SupportPage() {
+  const { content } = useAdminContent()
+
   return (
     <>
       <PageMeta
@@ -102,7 +86,7 @@ function SupportPage() {
           intro="Most program and product questions fall into one of these categories. If yours is different, contact us directly."
         />
         <div className="support-faq" role="list">
-          {FAQ.map((item) => (
+          {content.supportFaq.map((item) => (
             <article key={item.q} className="support-faq-item" role="listitem">
               <h3>{item.q}</h3>
               <p>{item.a}</p>

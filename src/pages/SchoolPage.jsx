@@ -1,34 +1,14 @@
 import PageMeta from '../components/PageMeta'
 import MovingCardsRow from '../components/MovingCardsRow'
 import SectionHeading from '../components/SectionHeading'
-import { media, programCatalog, schoolFocus } from '../content/siteData'
+import { useAdminContent } from '../context/AdminContentContext'
+import { media, schoolFocus } from '../content/siteData'
 
 const schoolHeroSlides = [media.classroom, media.students, media.books]
 
-const schoolMentionables = [
-  {
-    title: 'AI Lab Showcases',
-    description: 'Students present guided AI lab outcomes in institutional exhibitions and community demos.',
-    image: media.classroom,
-  },
-  {
-    title: 'STEM Build Challenges',
-    description: 'Hands-on engineering build sprints that improve teamwork, logic, and presentation confidence.',
-    image: media.robotics,
-  },
-  {
-    title: 'Teacher Enablement Wins',
-    description: 'Faculty implementation checkpoints ensuring classroom continuity and better learner engagement.',
-    image: media.books,
-  },
-  {
-    title: 'Language Confidence Growth',
-    description: 'I Speak English classroom routines improving communication outcomes for young learners.',
-    image: media.students,
-  },
-]
-
 function SchoolPage() {
+  const { content } = useAdminContent()
+
   return (
     <>
       <PageMeta
@@ -82,7 +62,7 @@ function SchoolPage() {
           intro="Each stream maps to grade bands from Grade 1–3 up to Grade 10–12, with age-appropriate progression across every school level."
         />
 
-        {programCatalog.map((stream) => (
+        {content.schoolCurriculum.map((stream) => (
           <div key={stream.slug} className="catalog-stream">
             <div className="catalog-stream-header">
               <h2>{stream.stream}</h2>
@@ -114,7 +94,7 @@ function SchoolPage() {
         />
         <MovingCardsRow
           title="Milestones and Student Mentionables"
-          items={schoolMentionables}
+          items={content.schoolMentionables}
         />
       </section>
     </>

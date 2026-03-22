@@ -74,11 +74,31 @@ export const schoolFocus = {
 
 export const collegeInnovationModel = {
   pipeline: [
-    'Potential Project Identification',
-    'Feasibility and Future-Solution Validation',
-    'Prototype and Product Direction',
-    'Mentoring, Testing, and Demo Readiness',
-    'Deployment or Funding Pathway',
+    {
+      title: 'Potential Project Identification',
+      description:
+        'At this stage, student ideas are screened through mentor-led discovery sessions to identify real-world relevance, technical curiosity, and problem-solving value. Teams are guided to convert raw concepts into clearly framed project statements with defined objectives, target users, and expected outcomes. Early documentation is introduced so each idea starts with a strong foundation for research, execution planning, and long-term innovation potential.',
+    },
+    {
+      title: 'Feasibility and Future-Solution Validation',
+      description:
+        'Once a promising project is identified, the focus shifts to feasibility checks across technology, resources, timeline, and practical implementation constraints. Mentors support students in evaluating whether the concept can evolve beyond an academic submission into a future-ready solution, including scope refinement, architecture decisions, and validation against market or social relevance. This stage ensures the project direction is both realistic and impactful before development effort scales up.',
+    },
+    {
+      title: 'Prototype and Product Direction',
+      description:
+        'Students then move into guided prototyping, where the concept is translated into a working model with measurable functionality. Alongside technical development, mentors help define product direction, usability goals, and feature priorities so the prototype reflects a meaningful solution rather than a one-time demo. Documentation of design decisions, testing assumptions, and iteration outcomes is maintained to prepare the project for advanced review and potential productization.',
+    },
+    {
+      title: 'Mentoring, Testing, and Demo Readiness',
+      description:
+        'In this stage, projects are strengthened through structured mentoring cycles, technical reviews, and repeated validation of performance, stability, and user experience. Students receive support in test planning, debugging discipline, presentation flow, and technical storytelling to ensure they can confidently communicate both the engineering and impact of their work. The outcome is a polished, evaluation-ready project prepared for institutional, industry, or competitive demonstration environments.',
+    },
+    {
+      title: 'Deployment or Funding Pathway',
+      description:
+        'Final-stage projects are mapped to clear next steps, either toward pilot deployment, incubation support, or funding and proposal opportunities. Mentors help teams align documentation, metrics, and presentation assets for stakeholder engagement, while also identifying pathways for patents, partnerships, or research publication where relevant. This stage transforms student output into a continuation-ready solution with practical routes for implementation, scale, and sustained growth.',
+    },
   ],
   services: [
     'Support for student projects with potential to become future solutions',

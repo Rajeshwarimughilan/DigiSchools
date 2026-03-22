@@ -3,17 +3,16 @@ import AnimatedStat from '../components/AnimatedStat'
 import MovingCardsRow from '../components/MovingCardsRow'
 import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
+import { useAdminContent } from '../context/AdminContentContext'
 import {
-  achievementCards,
-  awardHighlights,
-  fundingMilestones,
   media,
   mouStats,
-  outcomeStats,
   studentOutcomes,
 } from '../content/siteData'
 
 function ImpactPage() {
+  const { content } = useAdminContent()
+
   return (
     <>
       <PageMeta
@@ -42,7 +41,7 @@ function ImpactPage() {
 
       {/* ── Outcome Stats Ribbon ─────────────────────────────────────────── */}
       <section className="outcome-stats-ribbon">
-        {outcomeStats.map((stat, i) => (
+        {content.impactStats.map((stat, i) => (
           <article key={stat.label} className="outcome-stat">
             <AnimatedStat value={stat.value} className="outcome-value" index={i} />
             <p className="outcome-label">{stat.label}</p>
@@ -60,7 +59,7 @@ function ImpactPage() {
         />
 
         <div className="funding-timeline">
-          {fundingMilestones.map((milestone, i) => (
+          {content.impactFundingJourney.map((milestone, i) => (
             <article
               key={milestone.label}
               className="funding-milestone"
@@ -89,7 +88,7 @@ function ImpactPage() {
         />
 
         <div className="awards-grid">
-          {awardHighlights.map((award) => (
+          {content.impactRecognitions.map((award) => (
             <article key={award.award} className="award-card">
               <div className="award-image-wrap">
                 <img src={award.image} alt={award.award} />
@@ -111,7 +110,7 @@ function ImpactPage() {
       <section className="section-block compact-top">
         <MovingCardsRow
           title="Milestones, Awards & Outcomes at a Glance"
-          items={achievementCards}
+          items={content.impactMilestones}
         />
       </section>
 

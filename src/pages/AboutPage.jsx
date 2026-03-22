@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
-import { aboutCapabilities, mainObjectives, media } from '../content/siteData'
+import { useAdminContent } from '../context/AdminContentContext'
+import { mainObjectives, media } from '../content/siteData'
 
 const objectivePanels = [
   {
@@ -58,6 +59,7 @@ const capabilityBackdrop = media.innovation
 
 function AboutPage() {
   const [activeObjective, setActiveObjective] = useState(0)
+  const { content } = useAdminContent()
 
   return (
     <>
@@ -154,7 +156,7 @@ function AboutPage() {
         />
 
         <div className="capability-grid">
-          {aboutCapabilities.map((cap) => (
+          {content.aboutCapabilities.map((cap) => (
             <article
               key={cap.area}
               className="capability-card capability-card-image"

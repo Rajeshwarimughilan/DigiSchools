@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
 import AboutPage from './pages/AboutPage'
+import AdminPage from './pages/AdminPage'
 import CollegePage from './pages/CollegePage'
 import DomainsPage from './pages/DomainsPage'
 import HomePage from './pages/HomePage'
@@ -30,6 +31,7 @@ function App() {
         <Route path="impact" element={<ImpactPage />} />
         <Route path="support" element={<SupportPage />} />
         <Route path="policies" element={<PoliciesPage />} />
+        <Route path="admin" element={<AdminPage />} />
         <Route path="contact" element={<Navigate to="/support" replace />} />
         {/* Legacy URL redirects */}
         <Route path="home" element={<Navigate to="/" replace />} />

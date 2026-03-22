@@ -2,30 +2,8 @@ import { useMemo, useState } from 'react'
 import PageMeta from '../components/PageMeta'
 import MovingCardsRow from '../components/MovingCardsRow'
 import SectionHeading from '../components/SectionHeading'
+import { useAdminContent } from '../context/AdminContentContext'
 import { collegeInnovationModel, media } from '../content/siteData'
-
-const collegeNotables = [
-  {
-    title: 'Prototype Demo Days',
-    description: 'Campus demo days where student projects are reviewed for product and funding readiness.',
-    image: media.students,
-  },
-  {
-    title: 'Publication Track Support',
-    description: 'Structured mentoring for journals and conference submissions with documentation quality checks.',
-    image: media.coding,
-  },
-  {
-    title: 'IP and Patent Clinics',
-    description: 'Focused workshops to identify novelty and convert technical work into IP-ready submissions.',
-    image: media.innovation,
-  },
-  {
-    title: 'Industry-Aligned Builds',
-    description: 'Project milestones mapped to real industry problem statements and implementation constraints.',
-    image: media.robotics,
-  },
-]
 
 const serviceVisuals = [media.students, media.innovation, media.coding, media.robotics, media.partnership, media.classroom]
 
@@ -84,6 +62,7 @@ function connectorPath(center, node, index) {
 }
 
 function CollegePage() {
+  const { content } = useAdminContent()
   const serviceNodes = useMemo(
     () => buildServiceNodes(collegeInnovationModel.services),
     [],
@@ -112,17 +91,17 @@ function CollegePage() {
           <article>
             <h3>Idea</h3>
             <p>Discovery and framing</p>
-            <span className="stage-meter"><i style={{ width: '24%' }} /></span>
+            <span className="stage-meter"><i style={{ '--meter-width': '24%', '--meter-delay': '80ms' }} /></span>
           </article>
           <article>
             <h3>Prototype</h3>
             <p>Build and validation</p>
-            <span className="stage-meter"><i style={{ width: '58%' }} /></span>
+            <span className="stage-meter"><i style={{ '--meter-width': '58%', '--meter-delay': '220ms' }} /></span>
           </article>
           <article>
             <h3>Product</h3>
             <p>Scale and deployment</p>
-            <span className="stage-meter"><i style={{ width: '88%' }} /></span>
+            <span className="stage-meter"><i style={{ '--meter-width': '88%', '--meter-delay': '360ms' }} /></span>
           </article>
         </div>
       </section>
@@ -135,11 +114,11 @@ function CollegePage() {
         />
         <div className="timeline-layout">
           {collegeInnovationModel.pipeline.map((stage, index) => (
-            <article key={stage} className="timeline-item">
+            <article key={stage.title} className="timeline-item">
               <p className="timeline-index">0{index + 1}</p>
               <div>
-                <h2>{stage}</h2>
-                <p className="timeline-subtitle">Structured progression with technical and documentation checkpoints.</p>
+                <h2>{stage.title}</h2>
+                <p className="timeline-subtitle">{stage.description}</p>
               </div>
             </article>
           ))}
@@ -208,7 +187,7 @@ function CollegePage() {
         />
         <MovingCardsRow
           title="Milestones and College Notables"
-          items={collegeNotables}
+          items={content.collegeNotables}
         />
       </section>
     </>

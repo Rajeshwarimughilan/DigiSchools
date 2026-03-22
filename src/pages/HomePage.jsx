@@ -5,13 +5,11 @@ import HeroScene from '../components/HeroScene'
 import MovingCardsRow from '../components/MovingCardsRow'
 import PageMeta from '../components/PageMeta'
 import SectionHeading from '../components/SectionHeading'
+import { useAdminContent } from '../context/AdminContentContext'
 import {
-  achievementCards,
   homeCorpSummary,
-  latestNews,
   media,
   missionPoints,
-  productPlatforms,
   quickStats,
 } from '../content/siteData'
 
@@ -76,6 +74,8 @@ const audienceTracks = [
 ]
 
 function HomePage() {
+  const { content } = useAdminContent()
+
   return (
     <>
       <PageMeta
@@ -219,17 +219,15 @@ function HomePage() {
           title="Landmark Projects Defining DigiSchool's Innovation Identity"
           intro="From government-recognized R&D awards to nationally supported agri-tech programs, these initiatives represent DigiSchool at its most ambitious."
         />
-        <FeatureBand
-          title="ATMAN-80 - Smart Agriculture with IIT Bombay and Nandha Engineering College"
-          text="A landmark IoT-driven precision farming initiative backed by ₹80 Lakhs in support. DigiSchool's ATMAN-80 deployment uses real-time sensor networks, drone monitoring, and automated irrigation systems to redefine agricultural intelligence at scale."
-          image={media.lab}
-        />
-        <FeatureBand
-          reverse
-          title="SCSTE Award-Winning R&D and Research Funding"
-          text="Recognized by SCSTE for best-in-class project innovation, DigiSchool received seed funding that ignited its R&D division. Over 8 years, this recognition grew into 4+ Crores in cumulative funding across government, industrial, and institutional research programs."
-          image={media.innovation}
-        />
+        {content.homeFlagshipInitiatives.map((item, index) => (
+          <FeatureBand
+            key={`${item.title}-${index}`}
+            reverse={item.reverse}
+            title={item.title}
+            text={item.text}
+            image={item.image}
+          />
+        ))}
       </section>
 
       {/* ── Platform Highlights scroll row ───────────────────────── */}
@@ -241,7 +239,7 @@ function HomePage() {
         />
         <MovingCardsRow
           title="Explore Our Core Platforms"
-          items={productPlatforms}
+          items={content.homeCorePlatforms}
         />
       </section>
 
@@ -253,7 +251,7 @@ function HomePage() {
           intro="Recent updates from DigiSchool programs, research, and partner collaborations."
         />
         <div className="latest-news-grid" role="list" aria-label="Latest DigiSchool news">
-          {latestNews.map((item) => (
+          {content.homeLatestNews.map((item) => (
             <article key={item.title} className="news-item" role="listitem">
               <img src={item.image} alt={item.imageAlt ?? item.title} loading="lazy" />
               <p className="news-date">{item.date}</p>
@@ -269,7 +267,7 @@ function HomePage() {
       <section className="section-block is-plain compact-top">
         <MovingCardsRow
           title="Key Milestones & Achievements"
-          items={achievementCards}
+          items={content.homeAchievements}
         />
       </section>
 

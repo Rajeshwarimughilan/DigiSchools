@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
-import { contactInfo, navItems, partnerLogos, socialLinks, utilityNavItems } from '../content/siteData'
+import { contactInfo, navItems, socialLinks, utilityNavItems } from '../content/siteData'
+import { useAdminContent } from '../context/AdminContentContext'
 
 const socialIconMap = {
   Instagram: (
@@ -33,6 +34,7 @@ const socialIconMap = {
 
 function SiteLayout() {
   const location = useLocation()
+  const { content, isAdmin, logout } = useAdminContent()
 
   // Scroll-reveal: add reveal-target to section-blocks, then observe them
   useLayoutEffect(() => {
@@ -97,6 +99,17 @@ function SiteLayout() {
                   {item.label}
                 </NavLink>
               ))}
+              <NavLink
+                to="/admin"
+                className={({ isActive }) => (isActive ? 'utility-link active' : 'utility-link')}
+              >
+                {isAdmin ? 'Admin CMS' : 'Admin Login'}
+              </NavLink>
+              {isAdmin && (
+                <button type="button" className="utility-link utility-link-button" onClick={logout}>
+                  Logout
+                </button>
+              )}
             </nav>
 
             <div className="header-socials" aria-label="Social links">
@@ -152,7 +165,7 @@ function SiteLayout() {
           </div>
           <div className="partner-marquee">
             <div className="partner-track">
-              {[...partnerLogos, ...partnerLogos].map((partner, idx) => (
+              {[...content.trustedSchools, ...content.trustedSchools].map((partner, idx) => (
                 <div className="partner-logo-only" key={`${partner.name}-${idx}`} title={partner.name}>
                   <span className="partner-mark" aria-hidden="true">{partner.short}</span>
                   <span className="sr-only">{partner.name}</span>
