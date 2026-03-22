@@ -36,6 +36,10 @@ function SiteLayout() {
   const location = useLocation()
   const { content, isAdmin, logout } = useAdminContent()
 
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname])
+
   // Scroll-reveal: add reveal-target to section-blocks, then observe them
   useLayoutEffect(() => {
     const shell = document.querySelector('.site-shell')
