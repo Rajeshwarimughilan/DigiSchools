@@ -77,10 +77,19 @@ function MovingCardsRow({ title, items, speed = 1.1 }) {
     rafRef.current = requestAnimationFrame(tick)
 
     const onWheel = (e) => {
-      e.preventDefault()
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY * 0.6
       const loop = loopWidthRef.current
       if (!loop) return
+
+      const absX = Math.abs(e.deltaX)
+      const absY = Math.abs(e.deltaY)
+      const shiftHorizontal = e.shiftKey && absY > 0
+      const trackpadHorizontal = absX >= 5 && absX > absY * 0.65
+
+      // Never consume normal vertical wheel scrolling.
+      if (!shiftHorizontal && !trackpadHorizontal) return
+
+      e.preventDefault()
+      const delta = shiftHorizontal ? e.deltaY : e.deltaX
       offsetRef.current = ((offsetRef.current + delta) % loop + loop) % loop
     }
 
