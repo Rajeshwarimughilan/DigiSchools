@@ -10,7 +10,7 @@ import { useEffect, useRef } from 'react'
  * `items` can be any of the siteData arrays — the component reads
  *  the first matching field for title / description / image.
  */
-function MovingCardsRow({ title, items, speed = 1.1 }) {
+function MovingCardsRow({ title, items, speed = 0.5 }) {
   const viewportRef = useRef(null)
   const trackRef = useRef(null)
   const offsetRef = useRef(0)
